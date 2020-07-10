@@ -6,16 +6,19 @@ import BigNumber from 'bignumber.js';
  * Polymesh SDK connection
  */
 async function run(): Promise<void> {
+  const middleware =
+    process.env.MIDDLEWARE_URL && process.env.MIDDLEWARE_KEY
+      ? {
+          link: process.env.MIDDLEWARE_URL,
+          key: process.env.MIDDLEWARE_KEY,
+        }
+      : undefined;
+
   console.log('Connecting to the node...\n\n');
   const api = await Polymesh.connect({
     nodeUrl: 'wss://pme.polymath.network',
     accountUri: '//Alice',
-    middleware: {
-      /* eslint-disable @typescript-eslint/no-non-null-assertion */
-      link: process.env.MIDDLEWARE_URL!,
-      key: process.env.MIDDLEWARE_KEY!,
-      /* eslint-enable @typescript-eslint/no-non-null-assertion */
-    },
+    middleware,
   });
 
   const ticker = 'DEMO_TOKEN';
