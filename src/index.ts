@@ -53,6 +53,7 @@ async function run(): Promise<void> {
     - securityToken.issuance
     - securityToken.compliance
     - securityToken.compliance.rules
+    - securityToken.compliance.trustedClaimIssuers
 
     Each of these is a namespace containing subsets of the token's functionality. For example, 
     to issue tokens to your holders, you would call securityToken.issuance.issue
